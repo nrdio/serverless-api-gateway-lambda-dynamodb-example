@@ -1,10 +1,10 @@
-exports.getAccount = async(event) => {
+exports.helloWorld = async(event) => {
     try {
 
         const response = {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'Account retrieved successfully',
+                message: 'Hello World',
                 input: event,
             }),
         };

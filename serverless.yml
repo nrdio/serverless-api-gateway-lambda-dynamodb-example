@@ -1,5 +1,11 @@
 service: serverless-api-lambda-dynamodb-example
 
+custom:
+  accountTableName: 'Account-${self:provider.stage}'
+  dynamodb:
+      start:
+        migrate: true
+
 provider:
   name: aws
   runtime: nodejs8.10
@@ -7,11 +13,50 @@ provider:
   stage: dev
   region: us-west-2
 
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["AccountDynamoDBTable", "Arn" ] }
+  environment:
+    ACCOUNT_TABLE: ${self:custom.accountTableName}
+
 functions:
-  hello:
-    handler: handler.getAccount
+  createAccount:
+    handler: account-controller.createAccount
     events:
       - http:
           path: accounts/{proxy+}
+          method: post
+  helloWorld:
+    handler: hello-controller.helloWorld
+    events:
+      - http:
+          path: hello/{proxy+}
           method: get
 
+resources:
+  Resources:
+    AccountDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: 'id'
+            AttributeType: 'S'
+        KeySchema:
+          - AttributeName: 'id'
+            KeyType: 'HASH'
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.accountTableName}
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
