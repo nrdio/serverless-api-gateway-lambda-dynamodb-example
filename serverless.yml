@@ -34,24 +34,35 @@ functions:
       - http:
           path: accounts
           method: post
+
   getAccount:
     handler: account-controller.getAccount
     events:
       - http:
           path: accounts/{id+}
           method: get
+
   getAccounts:
     handler: account-controller.getAccounts
     events:
       - http:
           path: accounts
           method: get
+
   updateAccounts:
     handler: account-controller.updateAccount
     events:
       - http:
           path: accounts/{id+}
           method: put
+
+  deleteAccount:
+    handler: account-controller.deleteAccount
+    events:
+      - http:
+          path: accounts/{id+}
+          method: delete
+
   helloWorld:
     handler: hello-controller.helloWorld
     events:

@@ -39,7 +39,7 @@ class AccountRepository {
 
     async getAccount(id) {
         try {
-            // Prepare account item
+            // Prepare get account query
             const accountParams = {
                 TableName: ACCOUNT_TABLE,
                 Key: {
@@ -65,7 +65,7 @@ class AccountRepository {
 
     async getAccounts() {
         try {
-            // Prepare account item
+            // Prepare account scan query
             const accountParams = {
                 TableName: ACCOUNT_TABLE,
             };
@@ -88,7 +88,7 @@ class AccountRepository {
 
     async updateAccount(id, accountUpdateRequest) {
         try {
-            // Prepare account item
+            // Prepare update account query
             const timeStamp = new Date().getTime();
             const accountItem = {
                 TableName: ACCOUNT_TABLE,
@@ -117,6 +117,33 @@ class AccountRepository {
             console.log("Updated account with id " + id);
 
             return accountItem.Item;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+
+    async deleteAccount(id) {
+        try {
+            // Prepare delete account query
+            const accountParams = {
+                TableName: ACCOUNT_TABLE,
+                Key: {
+                    id: id
+                }
+            };
+
+            const client = await dynamoDbClient.dynamoDbClient();
+
+            console.log("Deleting account with id " + id);
+
+            // delete account from DynamoDB
+            await client.delete(accountParams).promise();
+
+            console.log("Deleted account with id " + id);
+
+            return;
         } catch (err) {
             console.log(err);
             throw err;

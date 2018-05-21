@@ -64,8 +64,7 @@ exports.getAccount = async(event) => {
 
 exports.getAccounts = async(event) => {
     try {
-
-        // get account
+        // get accounts
         const accounts = await accountService.getAccounts();
 
         // prepare response
@@ -97,8 +96,37 @@ exports.updateAccount = async(event) => {
             return response;
         }
 
-        // create new account
+        // update account
         const account = await accountService.updateAccount(event.pathParameters.id, accountUpdateRequest);
+
+        // prepare response
+        const response = {
+            statusCode: 200,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(account)
+        };
+
+        return response;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};
+
+exports.deleteAccount = async(event) => {
+    try {
+        // validation
+        if (!event.pathParameters.id) {
+            const response = {
+                statusCode: 400,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({'code':'invalid_data', 'message': 'account id is mandatory'})
+            };
+            return response;
+        }
+
+        // delete account
+        const account = await accountService.deleteAccount(event.pathParameters.id);
 
         // prepare response
         const response = {

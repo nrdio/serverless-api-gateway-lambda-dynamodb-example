@@ -38,6 +38,16 @@ class AccountService {
             throw err;
         }
     }
+
+    async deleteAccount(id) {
+        try {
+            return accountRepository.deleteAccount(id);
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
 }
 
 exports.AccountService = AccountService;
