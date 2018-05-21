@@ -188,7 +188,7 @@ Serverless: Checking Stack removal progress...
 Serverless: Stack removal finished...
 ``` 
 
-Thanks to offline plugins for serverless and DynamoDB it's also possible to deploy and test API locally. For local deployment firs we need to install DynamoDB using following command -
+Thanks to offline plugins for serverless and DynamoDB, it's also possible to deploy and test API locally. For local deployment first we need to install DynamoDB using following command -
 
 ```
 sls dynamodb install
