@@ -40,6 +40,12 @@ functions:
       - http:
           path: accounts/{id+}
           method: get
+  getAccounts:
+    handler: account-controller.getAccounts
+    events:
+      - http:
+          path: accounts
+          method: get
   helloWorld:
     handler: hello-controller.helloWorld
     events:

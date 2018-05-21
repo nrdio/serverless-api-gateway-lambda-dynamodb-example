@@ -63,6 +63,30 @@ class AccountRepository {
         }
     }
 
+    async getAccounts() {
+        try {
+            // Prepare account item
+            const accountParams = {
+                TableName: ACCOUNT_TABLE,
+            };
+
+            const client = await dynamoDbClient.dynamoDbClient();
+
+            console.log("Retrieving accounts");
+
+            // get account from DynamoDB
+            const accountItems = await client.scan(accountParams).promise();
+
+            console.log("Retrieved accounts");
+
+            return accountItems.Items;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+
 }
 
 exports.AccountRepository = AccountRepository;

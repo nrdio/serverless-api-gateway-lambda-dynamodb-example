@@ -21,6 +21,15 @@ class AccountService {
         }
     }
 
+    async getAccounts() {
+        try {
+            return accountRepository.getAccounts();
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
 }
 
 exports.AccountService = AccountService;

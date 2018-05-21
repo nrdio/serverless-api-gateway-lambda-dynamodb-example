@@ -61,3 +61,23 @@ exports.getAccount = async(event) => {
         throw err;
     }
 };
+
+exports.getAccounts = async(event) => {
+    try {
+
+        // get account
+        const accounts = await accountService.getAccounts();
+
+        // prepare response
+        const response = {
+            statusCode: 200,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(accounts)
+        };
+
+        return response;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};
