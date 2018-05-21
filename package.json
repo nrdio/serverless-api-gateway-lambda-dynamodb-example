@@ -1,8 +1,8 @@
 {
-  "name": "api-gateway-lambda-serverless-example",
+  "name": "serverless-api-gateway-lambda-dynamodb-example",
   "version": "1.0.0",
   "description": "This project demonstrate usage of Serverless framework for creating a Rest API using API gateway, Lambda and Dynamodb for persistance",
-  "main": "index.js",
+  "main": "hello-controller.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nrdio/api-gateway-lambda-serverless-example.git"
+    "url": "git+https://github.com/nrdio/serverless-api-gateway-lambda-dynamodb-example.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nrdio/api-gateway-lambda-serverless-example.git/issues"
+    "url": "https://github.com/nrdio/serverless-api-gateway-lambda-dynamodb-example.git/issues"
   },
-  "homepage": "https://github.com/nrdio/api-gateway-lambda-serverless-example.gitt#readme",
+  "homepage": "https://github.com/nrdio/serverless-api-gateway-lambda-dynamodb-example.gitt#readme",
   "devDependencies": {
     "serverless-dynamodb-local": "^0.2.30",
     "serverless-offline": "^3.20.3"
