@@ -81,3 +81,35 @@ exports.getAccounts = async(event) => {
         throw err;
     }
 };
+
+exports.updateAccount = async(event) => {
+    try {
+        // extract request body
+        const accountUpdateRequest = JSON.parse(event.body)
+
+        // validation
+        if (!event.pathParameters.id || !accountUpdateRequest.name || !accountUpdateRequest.iban) {
+            const response = {
+                statusCode: 400,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({'code':'invalid_data', 'message': 'id, name and iban are mandatory'})
+            };
+            return response;
+        }
+
+        // create new account
+        const account = await accountService.updateAccount(event.pathParameters.id, accountUpdateRequest);
+
+        // prepare response
+        const response = {
+            statusCode: 200,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(account)
+        };
+
+        return response;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};

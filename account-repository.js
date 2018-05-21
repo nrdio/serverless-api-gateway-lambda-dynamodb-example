@@ -86,7 +86,42 @@ class AccountRepository {
         }
     }
 
+    async updateAccount(id, accountUpdateRequest) {
+        try {
+            // Prepare account item
+            const timeStamp = new Date().getTime();
+            const accountItem = {
+                TableName: ACCOUNT_TABLE,
+                Key: {
+                    id: id,
+                },
+                ExpressionAttributeNames: {
+                    '#account_name': 'name',
+                },
+                ExpressionAttributeValues: {
+                    ':newName': accountUpdateRequest.name,
+                    ':newIban': accountUpdateRequest.iban,
+                    ':updatedAt': timeStamp
+                },
+                UpdateExpression: 'SET #account_name = :newName, iban = :newIban, updatedAt = :updatedAt',
+                ReturnValues: 'NONE'
+            };
 
+            const client = await dynamoDbClient.dynamoDbClient();
+
+            console.log("Updating account with id " + id);
+
+            // insert account in DynamoDB
+            await client.update(accountItem).promise();
+
+            console.log("Updated account with id " + id);
+
+            return accountItem.Item;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
 }
 
 exports.AccountRepository = AccountRepository;

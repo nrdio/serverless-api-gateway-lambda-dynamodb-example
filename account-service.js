@@ -30,6 +30,14 @@ class AccountService {
         }
     }
 
+    async updateAccount(id, accountUpdateRequest) {
+        try {
+            return accountRepository.updateAccount(id, accountUpdateRequest);
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
 }
 
 exports.AccountService = AccountService;

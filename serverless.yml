@@ -46,6 +46,12 @@ functions:
       - http:
           path: accounts
           method: get
+  updateAccounts:
+    handler: account-controller.updateAccount
+    events:
+      - http:
+          path: accounts/{id+}
+          method: put
   helloWorld:
     handler: hello-controller.helloWorld
     events:
