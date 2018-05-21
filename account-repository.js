@@ -23,10 +23,38 @@ class AccountRepository {
 
             const client = await dynamoDbClient.dynamoDbClient();
 
+            console.log("Registering new account");
+
             // insert account in DynamoDB
             await client.put(accountItem).promise();
 
             console.log("Registered new account with id " + accountItem.Item.id);
+
+            return accountItem.Item;
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }
+
+    async getAccount(id) {
+        try {
+            // Prepare account item
+            const accountParams = {
+                TableName: ACCOUNT_TABLE,
+                Key: {
+                    id: id
+                }
+            };
+
+            const client = await dynamoDbClient.dynamoDbClient();
+
+            console.log("Retrieving account with id " + id);
+
+            // get account from DynamoDB
+            const accountItem = await client.get(accountParams).promise();
+
+            console.log("Retrieved account with id " + id);
 
             return accountItem.Item;
         } catch (err) {

@@ -32,13 +32,19 @@ functions:
     handler: account-controller.createAccount
     events:
       - http:
-          path: accounts/{proxy+}
+          path: accounts
           method: post
+  getAccount:
+    handler: account-controller.getAccount
+    events:
+      - http:
+          path: accounts/{id+}
+          method: get
   helloWorld:
     handler: hello-controller.helloWorld
     events:
       - http:
-          path: hello/{proxy+}
+          path: hello
           method: get
 
 resources:
