@@ -3,13 +3,15 @@ service: serverless-api-lambda-dynamodb-example
 custom:
   accountTableName: 'Account-${self:provider.stage}'
   dynamodb:
+      stages:
+        - dev
       start:
         migrate: true
 
 provider:
   name: aws
-  runtime: nodejs8.10
-
+  runtime: nodejs12.x
+  memorySize: 128
   stage: dev
   region: us-west-2
 

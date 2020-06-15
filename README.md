@@ -1,12 +1,12 @@
-# Example project demonstrating usage of Serverless framework for creating a CRUD Rest API using API gateway, Lambda with Node.js 8.10 runtime and Dynamodb for persistence
+# Project demonstrating usage of Serverless framework for creating a CRUD Rest API using API gateway REST API, Lambda with Node.js 12.x runtime and Dynamodb
 
-Serverless framework provides consistent packaging and deployment experience across cloud providers. It provides an abstraction on top of cloud vendor settings and configurations. This makes it easier to focus on actual functions instead of cloud specific configurations, packaging and deployments. In this example instead of using raw cloudformation template to spin up complete stack we will use an serverless framework. Under the hood serverless.yml uses cloudformation template for AWS.          
+Serverless framework provides consistent packaging and deployment experience across cloud providers. It provides an abstraction on top of cloud vendor settings and configurations. This makes it easier to focus on actual functions instead of cloud specific configurations, packaging and deployments. In this example instead of using raw cloudformation template to spin up complete stack we will use a serverless framework. Under the hood serverless.yml uses cloudformation template for AWS.          
 
 Just like raw cloudfrormation template [serverless.yml](serverless.yml) takes care of spinning up a CloudFormation stack comprising of -
 
    * API Gateway REST API
    * DynamoDB Table
-   * Node.js 8.10 Lambda functions for CRUD operations on Account  
+   * Lambda functions with Node.js 12.x runtime for CRUD operations on Account  
    * IAM Roles and Policies
 
 
@@ -25,7 +25,7 @@ npm install serverless -g
 After that create a package and cloudformation stack using following command
 
 ```
-sls deploy
+serverless deploy
 
 Serverless: Packaging service...
 Serverless: Excluding development dependencies...
@@ -178,7 +178,7 @@ x-amz-cf-id: KX1uEWob2gImG_KZVQzJZm1mi0lKHM5Aa0c5NvtvJi-rl9jOGxh4tg==
 Finally you can delete the stack using following command - 
 
 ```
-sls remove
+serverless remove
          
 Serverless: Getting all objects in S3 bucket...
 Serverless: Removing objects in S3 bucket...
@@ -191,14 +191,14 @@ Serverless: Stack removal finished...
 Thanks to offline plugins for serverless and DynamoDB, it's also possible to deploy and test API locally. For local deployment first we need to install DynamoDB using following command -
 
 ```
-sls dynamodb install
+serverless dynamodb install
 ```
 
 After that fire up local API using following command - 
 
 
 ```
-sls offline start
+serverless offline start
 
 Dynamodb Local Started, Visit: http://localhost:8000/shell
 Serverless: DynamoDB - created table Account-dev
