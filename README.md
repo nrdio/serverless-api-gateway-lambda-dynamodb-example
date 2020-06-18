@@ -1,6 +1,6 @@
 # Project demonstrating usage of Serverless framework for creating a CRUD Rest API using API gateway REST API, Lambda with Node.js 12.x runtime and Dynamodb
 
-Serverless framework provides consistent packaging and deployment experience across cloud providers. It provides an abstraction on top of cloud vendor settings and configurations. This makes it easier to focus on actual functions instead of cloud specific configurations, packaging and deployments. In this example instead of using raw cloudformation template to spin up complete stack we will use a serverless framework. Under the hood serverless.yml uses cloudformation template for AWS.          
+Serverless framework provides consistent packaging and deployment experience across cloud providers. It provides an abstraction on top of cloud vendor settings and configurations. This makes it easier to focus on actual functions instead of cloud specific configurations, packaging and deployments. In this example instead of using raw cloudformation template to spin up complete stack we will use a serverless framework. Under the hood serverless uses cloudformation to spin up stack in AWS.
 
 Just like raw cloudfrormation template [serverless.yml](serverless.yml) takes care of spinning up a CloudFormation stack comprising of -
 
@@ -19,7 +19,13 @@ Prerequisite : [AWS account](https://aws.amazon.com/) and [AWS CLI](https://docs
 Install Serverless Framework - 
 
 ```
-npm install serverless -g
+npm install -g serverless
+```
+
+Initial setup -
+
+```
+serverless
 ```
 
 After that create a package and cloudformation stack using following command

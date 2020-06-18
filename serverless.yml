@@ -65,13 +65,6 @@ functions:
           path: accounts/{id+}
           method: delete
 
-  helloWorld:
-    handler: hello-controller.helloWorld
-    events:
-      - http:
-          path: hello
-          method: get
-
 resources:
   Resources:
     AccountDynamoDBTable:
