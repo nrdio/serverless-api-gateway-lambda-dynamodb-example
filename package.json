@@ -22,6 +22,6 @@
     "homepage": "https://github.com/nrdio/serverless-api-gateway-lambda-dynamodb-example.gitt#readme",
     "devDependencies": {
         "serverless-dynamodb-local": "^0.2.30",
-        "serverless-offline": "6.4.0"
+        "serverless-offline": "12.0.3"
     }
 }
